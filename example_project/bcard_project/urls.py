@@ -8,9 +8,9 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^(?P<username>\w+)/(?P<sitename>[-\w]+)/$', PageView.as_view(), name='site'),
+    url(r'^pages/(?P<username>\w+)/(?P<sitename>[-\w]+)/$', PageView.as_view(), name='site'),
 
-    url(r'^(?P<username>\w+)/(?P<sitename>[-\w]+)/(?P<path>[-\/\w]+)$', PageView.as_view(), name='page'),
+    url(r'^pages/(?P<username>\w+)/(?P<sitename>[-\w]+)/(?P<path>[-\/\w]+)$', PageView.as_view(), name='page'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
