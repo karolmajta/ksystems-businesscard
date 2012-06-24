@@ -9,6 +9,11 @@ class StandaloneTestSuite(object):
         'django.contrib.contenttypes',
         'django.contrib.sessions',
         'django.contrib.admin',
+        'django.contrib.sites',
+        # third party
+        'django_coverage',
+        'dbtemplates',
+        'reversion',
     )
 
     def __init__(self, *args, **kwargs):
@@ -16,7 +21,7 @@ class StandaloneTestSuite(object):
 
     def run_tests(self):
         """
-        Fire up the Django test suite developed for version 1.2
+        Fire up the Django test suite developed for version 1.4
         """
         settings.configure(
             DEBUG = True,
@@ -31,7 +36,8 @@ class StandaloneTestSuite(object):
                 }
             },
             INSTALLED_APPS = self.INSTALLED_APPS + self.apps,
-            ROOT_URLCONF = 'ks_bcard.urls'
+            ROOT_URLCONF = 'ks_bcard.tests.urls',
+	    SITE_ID = 1,
         )
         from django.test.simple import DjangoTestSuiteRunner
         failures = DjangoTestSuiteRunner().run_tests(self.apps, verbosity=1)
